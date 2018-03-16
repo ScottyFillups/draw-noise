@@ -35,7 +35,7 @@ drawNoise((x, y) => simplex.gen(x / 32, y / 32), {
 
 #### drawNoise(noiseFn, options)
 
-* noiseFn: A noise function with a range of [-1, 1]. **Required**
+* noiseFn: A two-dimensional noise function, or an array of two-dimensional noise functions, with a range of [-1, 1] **Required**
 * options:
   * width: The width of the image, in pixels. Defaults to `100px`
   * height: The height of the image, in pixels. Defaults to `100px`

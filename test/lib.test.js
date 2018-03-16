@@ -6,12 +6,30 @@ const sizeOf = promisify(require('image-size'))
 const path = require('path')
 
 describe('Drawing and saving noise with draw-noise', function () {
-  const simplex = new Simplex2('seed')
+  const simplexFns = [
+    new Simplex2('seed'),
+    new Simplex2('another one'),
+    new Simplex2('1v1 me in duck game'),
+    new Simplex2('Shiggy diggy doo')
+  ].map(obj => (x, y) => obj.gen(x / 32, y / 32))
 
   it('creates a 100 x 100 image named noise.png by default', function () {
-    drawNoise((x, y) => simplex.gen(x / 32, y / 32))
+    drawNoise(simplexFns[0])
 
     sizeOf('./noise.png').then(({ width, height }) => {
+      expect(width).to.equal(100)
+      expect(height).to.equal(100)
+    }).catch((err) => {
+      expect.fail('No error should be thrown')
+    })
+  })
+
+  it('can take an array of functions for each RGBA channel', function () {
+    const filename = path.join(__dirname, './noiseRGBA.png')
+
+    drawNoise(simplexFns, { filename })
+
+    sizeOf('./noiseRGBA.png').then(({ width, height }) => {
       expect(width).to.equal(100)
       expect(height).to.equal(100)
     }).catch((err) => {
@@ -22,7 +40,7 @@ describe('Drawing and saving noise with draw-noise', function () {
   it('takes and uses a configuration object', function () {
     const filename = path.join(__dirname, './noise1.png')
 
-    drawNoise((x, y) => simplex.gen(x / 128, y / 128), {
+    drawNoise(simplexFns[1], {
       width: 1000,
       height: 300,
       filename

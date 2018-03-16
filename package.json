@@ -3,6 +3,19 @@
   "version": "0.0.0-development",
   "main": "index.js",
   "author": "Philip Scott <pscott@zeptohost.com>",
+  "description": "Draw the output of a noise function on node-canvas and save it as a PNG!",
+  "keywords": [
+    "noise",
+    "canvas",
+    "node-canvas",
+    "node",
+    "simplex",
+    "simplex noise",
+    "perlin",
+    "perlin noise",
+    "procedural",
+    "procedural generation"
+  ],
   "license": "MIT",
   "scripts": {
     "test": "nyc mocha --reporter spec",
@@ -11,7 +24,7 @@
   },
   "dependencies": {
     "canvas": "1.6.0",
-    "noise-canvas": "^1.0.2"
+    "noise-canvas": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

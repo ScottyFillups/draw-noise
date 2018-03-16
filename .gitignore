@@ -2,3 +2,5 @@
 *.log
 *.swp
 *.swo
+/test/*.png
+/.nyc_output
